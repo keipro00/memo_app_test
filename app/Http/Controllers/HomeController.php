@@ -24,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $memos = Memo::select('memos.*')
+            ->where('user_id' , '=', \Auth::id())
+            ->whereNull('deleted_at')
+            ->orderBy('updated_at','DESC') //ASC=小さい順
+            ->get();
+
         return view('create');
     }
     
@@ -34,4 +40,5 @@ class HomeController extends Controller
 
         return redirect(route( 'home' ));
     }
+
 }
