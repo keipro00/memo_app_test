@@ -41,4 +41,27 @@ class HomeController extends Controller
         return redirect(route( 'home' ));
     }
 
+    public function edit($id)
+    {
+        // エディットページ表示の際にもメモデータとる必要あり、エラーになる
+        $memos = Memo::select('memos.*')
+            ->where('user_id' , '=', \Auth::id())
+            ->whereNull('deleted_at')
+            ->orderBy('updated_at','DESC') //ASC=小さい順
+            ->get();
+
+            // データベースの主キーをとると全データとれる
+        $edit_memo = Memo::find($id);
+
+        return view('edit', compact('memos', 'edit_memo'));
+    }
+
+    public function update(Request $request)
+    {
+        $posts = $request->all();
+        Memo::where('id', $posts['memo_id'])->update(['content' => $posts['content']]);
+
+        return redirect(route( 'home' ));
+    }
+
 }
