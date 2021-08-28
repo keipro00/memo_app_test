@@ -24,6 +24,9 @@
             <input class="form-check-input" type="checkbox" name="tags[]" id="{{ $t['id'] }}" value="{{ $t['id'] }}" {{ in_array($t['id'], $include_tags) ? 'checked' : '' }}>
             <label class="form-check-label" for="{{ $t['id'] }}">{{ $t['name']}}</label>
         </div>
+        @error('content')
+             <div class="alert alert-danger">メモ内容を入力してください</div>
+        @enderror
         @endforeach
         <div class="mb3">
             <input type="text" class="form-control w-50 mb-3" name="new_tag" placeholder="新しいタグを入力" />
