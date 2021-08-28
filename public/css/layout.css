@@ -1,0 +1,22 @@
+.my-card-body{
+  height: calc( 100vh - (55px + 48px) );
+}
+
+.elipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-r{
+  padding-bottom:3px;
+}
+
+.icon{
+  align-items: center;
+}
+
+.icon-01{
+  position:relative;
+  margin-top:4px;
+}
